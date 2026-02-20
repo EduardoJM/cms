@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-blogindexpage{% endblock %}
+
+{% block content %}
+  {% include 'parts/navbar.html' %}
+  {% include 'parts/header.html' %}
+
+  <div class="page-container">
+    {% if featured_posts %}
+      <h2 class="page-section-title">Principais Postagens</h2>
+
+      <div class="featured-posts-grid">
+        {% for post in featured_posts %}
+          {% with post=post.specific %}
+            <div class="featured-posts-card">
+              <a href="{% pageurl post %}">
+                {% with post.main_image as main_image %}
+                  {% if main_image %}{% image main_image fill-320x320 %}{% endif %}
+                {% endwith %}
+
+                <div>
+                  <span>{{ post.title }}</span>
+                </div>
+              </a>
+            </div>
+          {% endwith %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <h2 class="page-section-title">Últimas Postagens</h2>
+
+    {% for post in blogpages %}
+      {% include 'blog/parts/post-card.html' %}
+    {% endfor %}
+  </div>
+{% endblock %}

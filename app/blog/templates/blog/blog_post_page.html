@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-blogpage{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/blogpost.css' %}">
+{% endblock %}
+
+{% block content %}
+  {% include 'parts/navbar.html' %}
+
+  <div class="page-container">
+    <aside>
+      <div class="metadata">
+        {% with authors=page.authors.all %}
+          {% if authors %}
+            {% for author in authors %}
+              <div class="author">
+                {% image author.author_image fill-40x40 style="vertical-align: middle" %}
+                {{ author.name }}
+              </div>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <p class="date">{{ page.date }}</p>
+        
+        {% with tags=page.tags.all %}
+          {% if tags %}
+            <div class="tags">
+              <h3>Tags</h3>
+              
+              {% for tag in tags %}
+                  <a href="{% slugurl 'posts' %}?tag={{ tag }}"><button type="button">{{ tag }}</button></a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+      </div>
+    </aside>
+
+    <div class="content-panel">
+      <h1 class="post-title">{{ page.title }}</h1>
+
+      <div class="content">
+        {{ page.body|richtext }}
+      </div>
+
+      <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+{% with post=post.specific %}
+  <div class="post-card">
+    <div class="post-card-inner">
+      {% with post.main_image as main_image %}
+        {% if main_image %}{% image main_image fill-320x240 %}{% endif %}
+      {% endwith %}
+      
+      <div class="contents">
+        <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
+        <p>{{ post.specific.intro }}</p>
+      </div>
+    </div>
+    <div class="post-card-footer">
+      <a href="{% pageurl post %}">Ler mais</a>
+    </div>
+  </div>
+{% endwith %}

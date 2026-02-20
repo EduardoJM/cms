@@ -1,0 +1,17 @@
+{% load static wagtailcore_tags %}
+<nav id="topbar">
+  <a href="/">
+    Início
+  </a>
+
+  <form action="{% slugurl 'search' %}" method="get">
+    <input
+      type="text"
+      placeholder="Pesquisar"
+      aria-label="Pesquisar"
+      name="query"
+      value="{{search_query}}"
+    />
+    <input type="submit" value="Search">
+  </form>
+</nav>

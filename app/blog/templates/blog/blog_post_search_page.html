@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+  {% include 'parts/navbar.html' %}
+
+  <div class="page-container">
+    {% if search_results %}
+        {% for post in search_results %}
+            {% include 'blog/parts/post-card.html' %}
+        {% endfor %}
+    {% elif search_query %}
+        No results found
+    {% else %}
+        Please type something into the search box
+    {% endif %}
+  </div>
+{% endblock %}
