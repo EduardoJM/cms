@@ -1,0 +1,42 @@
+
+networks:
+  cms:
+    driver: bridge
+
+services:
+  db:
+    image: postgres:17
+    restart: always
+    volumes:
+      - db:/var/lib/postgresql/data/
+    environment:
+      - TZ=America/Sao_Paulo
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - cms
+    healthcheck:
+      test: "pg_isready -U postgres -d postgres"
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  cms:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: always
+    ports:
+      - 8000:8000
+    networks:
+      - cms
+    volumes:
+      - ./app:/app
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env
+
+volumes:
+  db:
