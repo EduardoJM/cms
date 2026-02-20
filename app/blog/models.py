@@ -11,7 +11,23 @@ from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.contrib.search_promotions.models import Query
 
 class BlogPostsListPage(Page):
-    pass
+    def get_context(self, request):
+        context = super().get_context(request)
+
+        blogpages = (
+            self.get_parent()
+            .get_children()
+            .type(BlogPostPage)
+            .live()
+            .order_by('-first_published_at')
+        )
+        tag = request.GET.get('tag')
+        if tag:
+            blogpages = blogpages.filter(blogpostpage__tags__name=tag)
+
+        context['posts'] = blogpages[:5]
+
+        return context
 
 class BlogIndexPage(Page):
     def get_context(self, request):

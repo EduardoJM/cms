@@ -8,7 +8,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('blog', '0007_blogpostslistpage'),
-        ('wagtailcore', '0097_query_searchpromotion_querydailyhits'),
     ]
 
     operations = [

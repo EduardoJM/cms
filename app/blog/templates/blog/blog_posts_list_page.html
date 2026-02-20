@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+  {% include 'parts/navbar.html' %}
+
+  <div class="page-container">
+    {% for post in posts %}
+        {% include 'blog/parts/post-card.html' %}
+    {% endfor %}
+  </div>
+{% endblock %}
