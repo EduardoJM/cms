@@ -8,4 +8,5 @@ dependencies = [
     "django-environ>=0.13.0",
     "psycopg>=3.3.3",
     "wagtail>=7.3",
+    "wagtail-color-panel>=1.7.1",
 ]

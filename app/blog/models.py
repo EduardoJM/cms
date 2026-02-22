@@ -9,6 +9,8 @@ from wagtail.fields import RichTextField
 from wagtail.snippets.models import register_snippet
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.contrib.search_promotions.models import Query
+from wagtail_color_panel.fields import ColorField
+from wagtail_color_panel.edit_handlers import NativeColorPanel
 
 class BlogPostsListPage(Page):
     def get_context(self, request):
@@ -122,8 +124,11 @@ class BlogPostSearchPage(Page):
 class Author(models.Model):
     name = models.CharField(max_length=255)
     author_image = models.ForeignKey(
-        'wagtailimages.Image', null=True, blank=True,
-        on_delete=models.SET_NULL, related_name='+'
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
     )
 
     panels = ["name", "author_image"]
@@ -135,3 +140,31 @@ class Author(models.Model):
         verbose_name = 'Autor'
         verbose_name_plural = 'Autores'
 
+@register_snippet
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    category_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    color = ColorField(default="#222222")
+
+    panels = ["name", "category_image", NativeColorPanel('color')]
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Categoria'
+        verbose_name_plural = 'Categorias'
+
+class BlogCategoriesListPage(Page):
+    def get_context(self, request):
+        context = super().get_context(request)
+
+        context['categories'] = Category.objects.select_related('category_image').all()
+
+        return context

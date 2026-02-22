@@ -91,6 +91,7 @@ dependencies = [
     { name = "django-environ" },
     { name = "psycopg" },
     { name = "wagtail" },
+    { name = "wagtail-color-panel" },
 ]
 
 [package.metadata]
@@ -98,6 +99,7 @@ requires-dist = [
     { name = "django-environ", specifier = ">=0.13.0" },
     { name = "psycopg", specifier = ">=3.3.3" },
     { name = "wagtail", specifier = ">=7.3" },
+    { name = "wagtail-color-panel", specifier = ">=1.7.1" },
 ]
 
 [[package]]
@@ -495,6 +497,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/59/cf/c707a97e68d3edba40d1706457cc32f3c7679aa72dc43a4470cf58bca6f8/wagtail-7.3.tar.gz", hash = "sha256:81c3449652b17341fc794d65bdd208ae9e15f21743e8a6ca6bc2ce2e7b7312ce", size = 6859380, upload-time = "2026-02-03T12:16:43.707Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/79/5d/63694054535c99b04a476512810f5d254e6de440fc7d14696e93b9f43c7f/wagtail-7.3-py3-none-any.whl", hash = "sha256:519c84c47bccc2e42182a3879c6efe9f34d7233239b2899a99139ae3e17c5266", size = 9475481, upload-time = "2026-02-03T12:16:41.244Z" },
+]
+
+[[package]]
+name = "wagtail-color-panel"
+version = "1.7.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "wagtail" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/58/bd/043c8cfc6eae14303b555782add80148db0596441e8770723cf17e664d4d/wagtail_color_panel-1.7.1.tar.gz", hash = "sha256:efc42058a49c39bea6a61523b230c71cf31e5aeaa269281c53146eeec02fc509", size = 10315, upload-time = "2025-11-23T06:07:53.765Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/db/1d/d004a5b57c8b1db6edee953e3222436c050dff2667320ca345964551640a/wagtail_color_panel-1.7.1-py3-none-any.whl", hash = "sha256:77ee02a6dd08b21e8806bb3e8c7dc01ad679dbeef864ad915fec32f5e8bcd574", size = 9383, upload-time = "2025-11-23T06:07:52.733Z" },
 ]
 
 [[package]]

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+  {% include 'parts/navbar.html' %}
+
+  <div class="page-container">
+    <h2 class="page-section-title">Categorias</h2>
+
+    <div class="category-grid">
+      {% for category in categories %}
+        <a
+          href="{% slugurl 'posts' %}?tag={{ category.name }}"
+          class="category-item"
+          style="background-color: {{ category.color }};"
+        >
+          {% if category.category_image %}
+            {% image category.category_image fill-400x400 style="width: 100%; height: 100%" %}
+          {% endif %}
+
+          <span>{{ category.name }}</span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
