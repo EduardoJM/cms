@@ -230,9 +230,34 @@ nav#topbar .search:focus-within button[type=submit] {
 }
 
 @media screen and (max-width: 800px) {
+  body {
+    padding-top: unset;
+  }
+  nav#topbar {
+    flex-direction: column;
+    align-items: stretch;
+    height: unset;
+    padding: 16px;
+    gap: 16px;
+    position: unset;
+    width: 100%;
+  }
   .page-container {
     max-width: 100%;
     padding: 50px 16px;
+  }
+  .post-card .post-card-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .post-card .post-card-inner img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  nav#topbar .search input[type=text] {
+    min-width: 0;
+    flex: 1;
   }
 }
 
